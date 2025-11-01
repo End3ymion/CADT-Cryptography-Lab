@@ -1,5 +1,5 @@
+package labw2
 
-package main
 import (
 	"bufio"
 	"encoding/base64"
@@ -98,7 +98,7 @@ func xorEncrypt(s, key string) string {
 	return base64.StdEncoding.EncodeToString(result)
 }
 
-func main() {
+func RunLab1() {
 	dashHeader()
 	fmt.Println("\nTask 1: Write a Go program to demonstrate the use of assignment operators. The program should take two integer inputs and perform various assignment operations such as =, +=, -=, *=, /=, and %=. Display the result after each operation.\n")
 	fmt.Println("Answer:\n")
@@ -167,13 +167,13 @@ func main() {
 			break
 		}
 
-		var a, b float64
+		var a_num, b_num float64
 
 		for {
 			fmt.Print("Enter first number: ")
 			scanner.Scan()
 			input := strings.TrimSpace(scanner.Text())
-			_, err := fmt.Sscanf(input, "%f", &a)
+			_, err := fmt.Sscanf(input, "%f", &a_num)
 			if err != nil {
 				fmt.Println("Please enter a number.")
 				continue
@@ -185,14 +185,14 @@ func main() {
 			fmt.Print("Enter second number: ")
 			scanner.Scan()
 			input := strings.TrimSpace(scanner.Text())
-			_, err := fmt.Sscanf(input, "%f", &b)
+			_, err := fmt.Sscanf(input, "%f", &b_num)
 			if err != nil {
 				fmt.Println("Please enter a number.")
 				continue
 			}
 			break
 		}
-		result, err := calculator(a, b, op)
+		result, err := calculator(a_num, b_num, op)
 		if err != nil {
 			fmt.Println("\nError:", err, "\n")
 			continue
@@ -213,7 +213,7 @@ func main() {
 		}
 
 		fmt.Println()
-		fmt.Printf("%v %s %v = %v\n", a, opSymbol, b, result)
+		fmt.Printf("%v %s %v = %v\n", a_num, opSymbol, b_num, result)
 		fmt.Println()
 	}
 
@@ -221,6 +221,7 @@ func main() {
 	fmt.Println("\nTask 5: Write a Go program to demonstrate how text data can be represented in binary, hexadecimal, and Base64 formats. The program should take a string input and display its equivalent binary, hexadecimal, and Base64 representations\n")
 
 	var input string
+	scanner = bufio.NewScanner(os.Stdin)
 
 	for {
 		fmt.Print("Enter string for Binary Format: ")
@@ -261,7 +262,7 @@ func main() {
 	fmt.Println("\nTask 6: Write a Go program to perform simple XOR encryption and decryption. The program should take a plaintext message and a key (single byte or repeating key) and produce a ciphertext by XORing them. Use the same function to decrypt the ciphertext to recover the original message.\n")
 
 	for {
-		scanner := bufio.NewScanner(os.Stdin)
+		scanner = bufio.NewScanner(os.Stdin)
 		var lines []string
 		fmt.Println("Enter string (Ctrl+D to end): ")
 		for scanner.Scan() {
@@ -281,7 +282,7 @@ func main() {
 
 	var key string
 	for {
-		scanner := bufio.NewScanner(os.Stdin)
+		scanner = bufio.NewScanner(os.Stdin)
 		fmt.Print("Enter key: ")
 		scanner.Scan()
 		key = strings.TrimSpace(scanner.Text())
